@@ -1,0 +1,276 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import frontCover from '../assets/front-cover.jpeg';
+import backCover from '../assets/back-cover.jpeg';
+---
+
+<Layout title="Onions Without Tears — by Alison, Countess of Bessborough">
+
+  <!-- Hero -->
+  <section class="bg-white">
+    <div class="max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
+      <div class="flex justify-center gap-6 md:gap-12 items-end mb-10">
+        <Image
+          src={frontCover}
+          alt="Front cover illustration — a chef contentedly smelling a red onion"
+          class="w-32 md:w-48 h-auto rounded shadow-lg"
+          widths={[192, 384]}
+        />
+        <Image
+          src={backCover}
+          alt="Back cover illustration — the same chef crying from the onion"
+          class="w-28 md:w-40 h-auto rounded shadow-lg"
+          widths={[160, 320]}
+        />
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-text tracking-tight mb-4">
+        Onions Without Tears
+      </h1>
+      <p class="text-lg md:text-xl text-text-muted mb-2">
+        A handbook of cooking tips
+      </p>
+      <p class="text-base md:text-lg text-text-muted italic">
+        by Alison, Countess of Bessborough
+      </p>
+      <div class="mt-8">
+        <span class="inline-block bg-onion text-white text-lg font-semibold px-6 py-3 rounded-full">
+          £9.50
+        </span>
+      </div>
+      <p class="mt-4 text-sm text-text-muted">
+        <a href="#find" class="underline decoration-onion/40 hover:decoration-onion transition-colors">Find out where to get your copy</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="h-1 bg-gradient-to-r from-cream via-onion/20 to-cream"></div>
+
+  <!-- About the Book -->
+  <section class="bg-cream" id="book">
+    <div class="max-w-2xl mx-auto px-6 py-16 md:py-20">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">What's inside</h2>
+      <p class="mb-6">
+        This isn't a recipe book. It's something far more useful — a lifetime of cooking
+        knowledge distilled into one honest, practical handbook.
+      </p>
+      <p class="mb-6">
+        From the best way to roast a potato to why your béchamel keeps going lumpy,
+        <em>Onions Without Tears</em> is packed with the kind of tips that actually make a
+        difference. The sort of thing a good friend might tell you over a cup of tea — if that
+        friend happened to have spent decades perfecting every dish she touched.
+      </p>
+      <p class="mb-8">
+        Whether you're just finding your way around the kitchen or you've been cooking for
+        years, you'll find something here that makes you think: <em>I wish I'd known
+        that sooner.</em>
+      </p>
+
+      <div class="bg-white rounded-xl p-6 md:p-8 shadow-sm border border-border">
+        <h3 class="text-lg font-semibold mb-4 text-onion-dark">Chapters include</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm text-text-muted">
+          <span>Kitchen Layout &amp; Essentials</span>
+          <span>Store Cupboard</span>
+          <span>Herbs &amp; Spices</span>
+          <span>Cooking Terms &amp; Methods</span>
+          <span>Stocks, Soups &amp; Sauces</span>
+          <span>Eggs &amp; Dairy</span>
+          <span>Fish</span>
+          <span>Meat, Poultry &amp; Game</span>
+          <span>Vegetables &amp; Fruit</span>
+          <span>Pasta &amp; Rice</span>
+          <span>Baking &amp; Desserts</span>
+          <span>Freezing &amp; Preserving</span>
+        </div>
+      </div>
+
+      <p class="mt-8 text-sm text-text-muted text-center italic">
+        Every chapter ends with a "Leftovers" section — because waste nothing
+        is a tip in itself.
+      </p>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="h-1 bg-gradient-to-r from-cream via-onion/20 to-cream"></div>
+
+  <!-- About Ali -->
+  <section class="bg-white" id="ali">
+    <div class="max-w-2xl mx-auto px-6 py-16 md:py-20">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">About the author</h2>
+      <p class="mb-6">
+        Alison, Countess of Bessborough, has never worked in a professional kitchen.
+        She has, however, spent decades feeding family and friends extraordinarily well —
+        and gathering every tip, trick and hard-won lesson along the way.
+      </p>
+      <p class="mb-6">
+        Self-taught and endlessly curious, Ali is the sort of cook who remembers the
+        trick a young chef on the River Spey showed her for making mayonnaise in twenty
+        seconds, or the tip Antonio Carluccio once shared about freezing wild mushrooms.
+        She's bought fake saffron in a Marrakech market (so you don't have to), and she
+        started out in a kitchen the size of a yacht's galley.
+      </p>
+      <p class="mb-6">
+        This book began as a collection of notes — things scribbled down over the years
+        from family, friends, cookbooks, the odd happy accident, and more than a few
+        mistakes. Eventually, those on the receiving end of her cooking persuaded her
+        to put it all in one place.
+      </p>
+      <p>
+        The result is <em>Onions Without Tears</em> — dedicated to her grandchildren,
+        Ella and Will, and to anyone who believes cooking should be a pleasure, not a puzzle.
+      </p>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="h-1 bg-gradient-to-r from-cream via-onion/20 to-cream"></div>
+
+  <!-- Where to Find It -->
+  <section class="bg-cream" id="find">
+    <div class="max-w-2xl mx-auto px-6 py-16 md:py-20 text-center">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8">Where to find it</h2>
+      <p class="mb-6">
+        <em>Onions Without Tears</em> is available for <strong>£9.50</strong> at
+        <a
+          href="https://stanstedfarmshop.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-onion hover:text-onion-dark underline decoration-onion/40 hover:decoration-onion transition-colors font-semibold"
+        >Stansted Farm Shop</a> — run by Ali's son and stocked with the kind of
+        produce this book was written for.
+      </p>
+      <p class="mb-8 text-text-muted">
+        You can also get in touch below to enquire about ordering a copy directly.
+      </p>
+      <a
+        href="#contact"
+        class="inline-block bg-onion hover:bg-onion-dark text-white font-semibold px-8 py-3 rounded-full transition-colors"
+      >
+        Get in touch
+      </a>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="h-1 bg-gradient-to-r from-cream via-onion/20 to-cream"></div>
+
+  <!-- Contact -->
+  <section class="bg-white" id="contact">
+    <div class="max-w-xl mx-auto px-6 py-16 md:py-20">
+      <h2 class="text-2xl md:text-3xl font-bold mb-4 text-center">Get in touch</h2>
+      <p class="text-text-muted text-center mb-10">
+        Whether you'd like to order a copy or simply say hello, drop a message below.
+      </p>
+
+      <form id="contact-form" class="space-y-6" method="POST" action="#contact">
+        <!-- Honeypot field — hidden from humans, catches bots -->
+        <div class="absolute -left-[9999px]" aria-hidden="true">
+          <label for="website">Website</label>
+          <input
+            type="text"
+            id="website"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
+        <div>
+          <label for="name" class="block text-sm font-semibold mb-2">Your name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full px-4 py-3 rounded-lg border border-border bg-cream focus:outline-none focus:ring-2 focus:ring-onion/30 focus:border-onion transition-colors"
+            placeholder="Your name"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-semibold mb-2">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-4 py-3 rounded-lg border border-border bg-cream focus:outline-none focus:ring-2 focus:ring-onion/30 focus:border-onion transition-colors"
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-semibold mb-2">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows="5"
+            class="w-full px-4 py-3 rounded-lg border border-border bg-cream focus:outline-none focus:ring-2 focus:ring-onion/30 focus:border-onion transition-colors resize-y"
+            placeholder="I'd love a copy of the book…"
+          ></textarea>
+        </div>
+
+        <div class="text-center">
+          <button
+            type="submit"
+            class="bg-onion hover:bg-onion-dark text-white font-semibold px-8 py-3 rounded-full transition-colors cursor-pointer"
+          >
+            Send message
+          </button>
+        </div>
+      </form>
+
+      <!-- Success message (hidden by default) -->
+      <div id="form-success" class="hidden text-center py-8">
+        <p class="text-lg font-semibold text-onion-dark mb-2">Thank you!</p>
+        <p class="text-text-muted">Your message has been sent. Ali will be in touch soon.</p>
+      </div>
+
+      <p class="text-xs text-text-muted text-center mt-8">
+        Your details won't be shared with anyone. This form simply sends an email.
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-cream-dark border-t border-border">
+    <div class="max-w-2xl mx-auto px-6 py-10 text-center text-sm text-text-muted">
+      <p class="mb-2">
+        <em>Onions Without Tears</em> &copy; {new Date().getFullYear()} Alison, Countess of Bessborough
+      </p>
+      <p>
+        Available at
+        <a
+          href="https://stanstedfarmshop.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-onion hover:text-onion-dark underline decoration-onion/40 hover:decoration-onion transition-colors"
+        >Stansted Farm Shop</a>
+      </p>
+    </div>
+  </footer>
+
+</Layout>
+
+<script>
+  // Simple client-side form handling placeholder
+  // Replace with Formspree, Cloudflare Workers, or similar when ready
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const success = document.getElementById('form-success') as HTMLElement;
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // Check honeypot
+    const honeypot = form.querySelector<HTMLInputElement>('input[name="website"]');
+    if (honeypot?.value) return; // Bot detected, silently ignore
+
+    // For now, just show success message
+    // TODO: Wire up to actual form service (Formspree, Cloudflare Workers, etc.)
+    form.classList.add('hidden');
+    success?.classList.remove('hidden');
+  });
+</script>
