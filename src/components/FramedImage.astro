@@ -1,0 +1,58 @@
+---
+/**
+ * FramedImage — displays an image in a consistent frame.
+ *
+ * All frames are the same outer size. The `scale` prop (0–100) controls
+ * how much of the frame the image fills. Use a lower scale for drawings
+ * that fill more of their canvas, so all illustrations look visually
+ * the same size regardless of original aspect ratio or whitespace.
+ *
+ * Usage:
+ *   <FramedImage src={myImage} alt="..." />
+ *   <FramedImage src={myImage} alt="..." scale={80} />
+ */
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  /** How much of the frame the image fills (0–100). Default: 100 */
+  scale?: number;
+  /** Outer frame width class. Default: "w-[180px] md:w-[228px]" */
+  frameWidth?: string;
+  /** Outer frame height class. Default: same aspect as width (3:4) */
+  frameHeight?: string;
+  /** Show the warm beige frame. Default: true */
+  framed?: boolean;
+}
+
+const {
+  src,
+  alt,
+  scale = 100,
+  frameWidth = 'w-[180px] md:w-[228px]',
+  frameHeight = 'h-[240px] md:h-[304px]',
+  framed = true,
+} = Astro.props;
+
+const padding = Math.round((100 - scale) / 2);
+const paddingStyle = scale < 100 ? `padding: ${padding}%;` : '';
+---
+
+<div
+  class:list={[
+    frameWidth,
+    frameHeight,
+    'flex items-center justify-center overflow-hidden',
+    framed && 'bg-cream-dark border-2 border-warm-light rounded-lg shadow-lg',
+  ]}
+>
+  <div class="w-full h-full flex items-center justify-center" style={paddingStyle}>
+    <Image
+      src={src}
+      alt={alt}
+      class="max-w-full max-h-full object-contain rounded"
+      widths={[200, 400]}
+    />
+  </div>
+</div>

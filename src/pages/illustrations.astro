@@ -1,0 +1,90 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+
+// Import all chapter illustrations
+import kitchenEssentials from '../assets/illustrations/kitchen-essentials-gadgets.jpeg';
+import storeCupboard from '../assets/illustrations/store-cupboard.jpeg';
+import herbsSpices from '../assets/illustrations/herbs-spices.jpeg';
+import cookingTerms from '../assets/illustrations/cooking-terms-methods.jpeg';
+import ovenTemps from '../assets/illustrations/oven-temporatures.jpeg';
+import stocks from '../assets/illustrations/stocks.jpeg';
+import soups from '../assets/illustrations/soups.jpeg';
+import sauces from '../assets/illustrations/sauces.jpeg';
+import eggsDairy from '../assets/illustrations/eggs-dairy.jpeg';
+import fish from '../assets/illustrations/fish.jpeg';
+import meat from '../assets/illustrations/meat.jpeg';
+import poultryGame from '../assets/illustrations/poultry-game.jpeg';
+import vegatables from '../assets/illustrations/vegatables.jpeg';
+import fruit from '../assets/illustrations/fruit.jpeg';
+import pastaRice from '../assets/illustrations/pasta-rice.jpeg';
+import bakingDesserts from '../assets/illustrations/baking-desserts.jpeg';
+import freezingPreserving from '../assets/illustrations/freezing-presrving.jpeg';
+
+const illustrations = [
+  { src: kitchenEssentials, label: 'Kitchen Essentials & Gadgets' },
+  { src: storeCupboard, label: 'Store Cupboard' },
+  { src: herbsSpices, label: 'Herbs & Spices' },
+  { src: cookingTerms, label: 'Cooking Terms & Methods' },
+  { src: ovenTemps, label: 'Oven Temperatures' },
+  { src: stocks, label: 'Stocks' },
+  { src: soups, label: 'Soups' },
+  { src: sauces, label: 'Sauces' },
+  { src: eggsDairy, label: 'Eggs & Dairy' },
+  { src: fish, label: 'Fish' },
+  { src: meat, label: 'Meat' },
+  { src: poultryGame, label: 'Poultry & Game' },
+  { src: vegatables, label: 'Vegetables' },
+  { src: fruit, label: 'Fruit' },
+  { src: pastaRice, label: 'Pasta & Rice' },
+  { src: bakingDesserts, label: 'Baking & Desserts' },
+  { src: freezingPreserving, label: 'Freezing & Preserving' },
+];
+---
+
+<Layout title="Illustrations — Onions Without Tears">
+
+  <section class="bg-white">
+    <div class="max-w-4xl mx-auto px-6 py-16 md:py-20">
+      <h1 class="text-3xl md:text-4xl font-bold mb-4 text-center">Illustrations</h1>
+      <p class="text-text-muted text-center mb-4 max-w-xl mx-auto">
+        Every chapter of <em>Onions Without Tears</em> opens with an original
+        hand-drawn illustration, each one capturing the spirit of what follows.
+      </p>
+      <p class="text-text-muted text-center mb-12 max-w-xl mx-auto">
+        All illustrations by <strong class="text-text">Chris Gilbert</strong>, whose
+        charming ink-and-watercolour style brings warmth and character to every page.
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-10 md:gap-x-8 md:gap-y-12">
+        {illustrations.map(({ src, label }) => (
+          <div class="text-center w-[calc(50%-12px)] md:w-[calc(33.333%-22px)]">
+            <p class="text-sm font-semibold text-text mb-2">{label}</p>
+            <div class="bg-cream-dark border-2 border-warm-light rounded-lg shadow-lg overflow-hidden">
+              <Image
+                src={src}
+                alt={`Illustration for ${label} chapter`}
+                class="w-full h-auto"
+                widths={[300, 400]}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-16 text-center bg-cream rounded-xl p-6 md:p-8 border border-border max-w-xl mx-auto">
+        <h2 class="text-lg font-semibold mb-3 text-onion-dark">About the artist</h2>
+        <p class="text-sm text-text-muted">
+          Chris Gilbert's illustrations were commissioned especially for
+          <em>Onions Without Tears</em>. His playful, expressive style — from the
+          contented chef on the front cover to the tearful one on the back — perfectly
+          captures the book's warm, light-hearted spirit.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+
+</Layout>
