@@ -83,9 +83,12 @@ export default {
         'Content-Type': 'application/json',
       };
 
-      // Owner IP filters — add your IPs here to exclude from tracking:
-      // const ownerIPs = ['1.2.3.4', '2a00:xxxx:'];
-      // if (ownerIPs.some(ip => visitorIp.startsWith(ip))) return new Response('{}', { headers: corsHeaders });
+      // Owner IP filters
+      const ownerIPs = [
+        '195.70.68.56',          // owner mobile (iPhone)
+        '2a00:23c6:7e52:ed01:', // owner home broadband (IPv6 /64)
+      ];
+      if (ownerIPs.some(ip => visitorIp.startsWith(ip))) return new Response('{}', { headers: corsHeaders });
 
       try {
         const body = await request.json() as any;
