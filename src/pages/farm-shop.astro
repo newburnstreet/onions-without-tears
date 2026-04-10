@@ -85,19 +85,21 @@ import farmShopLogo from '../assets/farm-shop-logo.jpg';
       </div>
 
       <!-- Map -->
-      <div class="mt-12 rounded-xl overflow-hidden border border-border">
-        <iframe
-          src="https://www.google.com/maps?q=Stansted+Park+Farm+Shop,+Rowlands+Castle,+Hampshire+PO9+6DU&z=9&output=embed"
-          width="100%"
-          height="300"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Stansted Park Farm Shop location"
-          class="w-full"
-        ></iframe>
-      </div>
+      <a
+        href="https://maps.google.com/?q=Stansted+Park+Farm+Shop,+Rowlands+Castle,+Hampshire+PO9+6DU"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-12 flex items-center justify-between gap-4 bg-cream rounded-xl border border-border px-6 py-5 hover:border-onion transition-colors group"
+      >
+        <div class="flex items-center gap-4">
+          <span class="text-3xl">📍</span>
+          <div>
+            <p class="font-semibold text-text text-sm">Stansted Park Farm Shop</p>
+            <p class="text-text-muted text-sm">Rowlands Castle, Hampshire PO9 6DU</p>
+          </div>
+        </div>
+        <span class="text-onion group-hover:text-onion-dark text-sm font-semibold whitespace-nowrap transition-colors">Open in Maps →</span>
+      </a>
 
       <!-- CTA -->
       <p class="mt-10 text-sm text-text-muted text-center italic">

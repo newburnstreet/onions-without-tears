@@ -23,7 +23,7 @@ body {
   font-family: Georgia, 'Times New Roman', serif;
   color: var(--color-text);
   line-height: 1.8;
-  background-color: var(--color-cream);
+  background-color: var(--color-white);
 }
 
 ::selection {
