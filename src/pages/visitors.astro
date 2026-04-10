@@ -1,0 +1,357 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Visitors" description="Visitor log">
+
+  <section class="bg-white flex-1">
+    <div class="max-w-5xl mx-auto px-6 py-16 md:py-20">
+
+      <h1 class="text-3xl md:text-4xl font-bold mb-2 text-center">Visitor Log</h1>
+      <p class="text-center text-text-muted mb-12">Recent visitors (last 30 days)</p>
+
+      <!-- Password prompt -->
+      <div id="auth-form" class="max-w-sm mx-auto">
+        <label class="block text-sm font-semibold mb-2">Password</label>
+        <div class="flex gap-2">
+          <input type="password" id="password" class="flex-1 px-4 py-3 rounded-lg border border-border bg-cream focus:outline-none focus:ring-2 focus:ring-onion/30 focus:border-onion transition-colors" placeholder="Enter password" />
+          <button id="load-btn" class="bg-onion hover:bg-onion-dark text-white font-semibold px-5 py-3 rounded-lg transition-colors">Load</button>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div id="loading" class="hidden py-12 text-center text-text-muted">Loading visitors...</div>
+
+      <!-- Error -->
+      <div id="error" class="hidden py-12 text-center text-red-500"></div>
+
+      <!-- Stats -->
+      <div id="stats" class="hidden mb-8">
+        <div class="flex flex-wrap items-center gap-2 mb-6">
+          <span class="text-sm text-text-muted mr-1">Show:</span>
+          <button data-time="all" class="time-btn px-3 py-1.5 text-sm rounded-full border border-onion bg-onion text-white cursor-pointer transition-colors">All time</button>
+          <button data-time="today" class="time-btn px-3 py-1.5 text-sm rounded-full border border-border bg-white text-text-muted cursor-pointer transition-colors">Today</button>
+          <button data-time="7days" class="time-btn px-3 py-1.5 text-sm rounded-full border border-border bg-white text-text-muted cursor-pointer transition-colors">Last 7 days</button>
+          <button data-time="30days" class="time-btn px-3 py-1.5 text-sm rounded-full border border-border bg-white text-text-muted cursor-pointer transition-colors">Last 30 days</button>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-cream border border-border rounded-xl p-4">
+            <p class="text-2xl font-bold text-text" id="stat-total">0</p>
+            <p class="text-xs text-text-muted mt-1">Total visits</p>
+          </div>
+          <div class="bg-cream border border-border rounded-xl p-4">
+            <p class="text-2xl font-bold text-text" id="stat-unique">0</p>
+            <p class="text-xs text-text-muted mt-1">Unique IPs</p>
+          </div>
+          <div class="bg-cream border border-border rounded-xl p-4">
+            <p class="text-2xl font-bold text-text" id="stat-today">0</p>
+            <p class="text-xs text-text-muted mt-1">Today</p>
+          </div>
+          <div class="bg-cream border border-border rounded-xl p-4">
+            <p class="text-2xl font-bold text-text" id="stat-countries">0</p>
+            <p class="text-xs text-text-muted mt-1">Countries</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter bar -->
+      <div id="filter-bar" class="hidden mb-4 flex items-center justify-between">
+        <p class="text-sm text-text-muted">Showing <span id="filtered-count">0</span> of <span id="total-count">0</span> visits</p>
+        <button id="clear-filters" class="text-xs text-onion hover:text-onion-dark transition-colors hidden">Clear column filters</button>
+      </div>
+
+      <!-- Table -->
+      <div id="table-container" class="hidden">
+        <div class="bg-cream border border-border rounded-xl overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead class="bg-cream-dark">
+                <tr class="text-left text-text-muted">
+                  <th class="px-4 py-3 font-semibold">Time</th>
+                  <th class="px-4 py-3 font-semibold relative">
+                    <button class="autofilter-btn flex items-center gap-1 hover:text-text" data-col="location">
+                      Location <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                  </th>
+                  <th class="px-4 py-3 font-semibold relative">
+                    <button class="autofilter-btn flex items-center gap-1 hover:text-text" data-col="ip">
+                      IP <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                  </th>
+                  <th class="px-4 py-3 font-semibold relative">
+                    <button class="autofilter-btn flex items-center gap-1 hover:text-text" data-col="page">
+                      Page <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                  </th>
+                  <th class="px-4 py-3 font-semibold relative">
+                    <button class="autofilter-btn flex items-center gap-1 hover:text-text" data-col="referrer">
+                      Referrer <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                  </th>
+                  <th class="px-4 py-3 font-semibold relative">
+                    <button class="autofilter-btn flex items-center gap-1 hover:text-text" data-col="device">
+                      Device <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="visitors-table" class="divide-y divide-border"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer />
+
+  <script>
+    function setup() {
+      const passwordInput = document.getElementById('password') as HTMLInputElement;
+      const loadBtn = document.getElementById('load-btn');
+      const authForm = document.getElementById('auth-form');
+      const loading = document.getElementById('loading');
+      const error = document.getElementById('error');
+      const stats = document.getElementById('stats');
+      const filterBar = document.getElementById('filter-bar');
+      const tableContainer = document.getElementById('table-container');
+      const tbody = document.getElementById('visitors-table');
+      const clearFiltersBtn = document.getElementById('clear-filters');
+      const filteredCountEl = document.getElementById('filtered-count');
+      const totalCountEl = document.getElementById('total-count');
+
+      let allData: any[] = [];
+      let processedData: any[] = [];
+      let filters: Record<string, Set<string>> = {
+        location: new Set(), ip: new Set(), page: new Set(), referrer: new Set(), device: new Set()
+      };
+      let timeFilter = 'all';
+      let activeDropdown: HTMLElement | null = null;
+
+      function updateTimeButtons() {
+        document.querySelectorAll('.time-btn').forEach(btn => {
+          const el = btn as HTMLElement;
+          if (el.dataset.time === timeFilter) {
+            el.classList.add('bg-onion', 'border-onion', 'text-white');
+            el.classList.remove('bg-white', 'border-border', 'text-text-muted');
+          } else {
+            el.classList.remove('bg-onion', 'border-onion', 'text-white');
+            el.classList.add('bg-white', 'border-border', 'text-text-muted');
+          }
+        });
+      }
+
+      function loadSavedFilters() {
+        const saved = localStorage.getItem('onions-visitors-filters');
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved);
+            for (const col of Object.keys(filters)) {
+              if (parsed[col] && Array.isArray(parsed[col])) filters[col] = new Set(parsed[col]);
+            }
+            if (parsed.timeFilter) { timeFilter = parsed.timeFilter; updateTimeButtons(); }
+          } catch {}
+        }
+      }
+
+      function saveFilters() {
+        const toSave: Record<string, any> = { timeFilter };
+        for (const col of Object.keys(filters)) toSave[col] = [...filters[col]];
+        localStorage.setItem('onions-visitors-filters', JSON.stringify(toSave));
+      }
+
+      function parseUserAgent(ua: string): string {
+        if (!ua || ua === 'unknown') return 'Unknown';
+        if (ua.includes('iPhone')) return 'iPhone';
+        if (ua.includes('iPad')) return 'iPad';
+        if (ua.includes('Android')) return 'Android';
+        if (ua.includes('Mac')) return 'Mac';
+        if (ua.includes('Windows')) return 'Windows';
+        if (ua.includes('Linux')) return 'Linux';
+        return 'Other';
+      }
+
+      function getReferrer(ref: string): string {
+        if (!ref || ref === 'direct') return 'Direct';
+        try { return new URL(ref).hostname; } catch { return ref; }
+      }
+
+      function getLocation(v: any): string {
+        return [v.city, v.region, v.country].filter(x => x && x !== 'unknown').join(', ') || 'Unknown';
+      }
+
+      function processData() {
+        processedData = allData.map(v => ({
+          ...v,
+          location: getLocation(v),
+          device: parseUserAgent(v.userAgent),
+          referrerHost: getReferrer(v.referrer)
+        }));
+      }
+
+      function getUniqueValues(col: string): string[] {
+        const key = col === 'referrer' ? 'referrerHost' : col;
+        return [...new Set(processedData.map(v => v[key]))].sort();
+      }
+
+      function applyFilters() {
+        const now = new Date();
+        const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
+        const filtered = processedData.filter(v => {
+          const ts = new Date(v.timestamp).getTime();
+          if (timeFilter === 'today' && ts < todayStart) return false;
+          if (timeFilter === '7days' && ts < todayStart - 7 * 86400000) return false;
+          if (timeFilter === '30days' && ts < todayStart - 30 * 86400000) return false;
+          if (filters.location.has(v.location)) return false;
+          if (filters.ip.has(v.ip)) return false;
+          if (filters.page.has(v.page)) return false;
+          if (filters.referrer.has(v.referrerHost)) return false;
+          if (filters.device.has(v.device)) return false;
+          return true;
+        });
+        saveFilters();
+        renderTable(filtered);
+        filterBar?.classList.remove('hidden');
+        filteredCountEl!.textContent = filtered.length.toString();
+        totalCountEl!.textContent = processedData.length.toString();
+        const hasColumnFilters = Object.values(filters).some(s => s.size > 0);
+        clearFiltersBtn?.classList.toggle('hidden', !hasColumnFilters);
+        document.querySelectorAll('.autofilter-btn').forEach(btn => {
+          const col = (btn as HTMLElement).dataset.col!;
+          btn.classList.toggle('text-onion', (filters[col]?.size ?? 0) > 0);
+        });
+      }
+
+      function renderTable(data: any[]) {
+        if (data.length === 0) {
+          tbody!.innerHTML = '<tr><td colspan="6" class="px-4 py-8 text-center text-text-muted">No visitors match your filters</td></tr>';
+          return;
+        }
+        tbody!.innerHTML = data.map(v => {
+          const time = new Date(v.timestamp);
+          const timeStr = time.toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }) + ' ' + time.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+          return '<tr class="hover:bg-white">' +
+            '<td class="px-4 py-3 whitespace-nowrap text-text-muted">' + timeStr + '</td>' +
+            '<td class="px-4 py-3">' + v.location + '</td>' +
+            '<td class="px-4 py-3 font-mono text-xs text-text-muted">' + v.ip + '</td>' +
+            '<td class="px-4 py-3">' + v.page + '</td>' +
+            '<td class="px-4 py-3 text-text-muted">' + v.referrerHost + '</td>' +
+            '<td class="px-4 py-3 text-text-muted text-xs">' + v.device + '</td>' +
+            '</tr>';
+        }).join('');
+      }
+
+      function showFilterDropdown(btn: HTMLElement, col: string) {
+        closeDropdown();
+        const values = getUniqueValues(col);
+        const excluded = filters[col];
+        const dropdown = document.createElement('div');
+        dropdown.className = 'absolute top-full left-0 mt-1 bg-white border border-border rounded-xl shadow-lg z-50 min-w-[200px] max-h-[300px] overflow-y-auto';
+        const items = values.map(val =>
+          '<label class="flex items-center gap-2 py-1 px-2 hover:bg-cream rounded cursor-pointer text-sm">' +
+          '<input type="checkbox" class="filter-checkbox" data-val="' + val.replace(/"/g, '&quot;') + '" ' + (excluded.has(val) ? '' : 'checked') + ' />' +
+          '<span class="truncate">' + val + '</span></label>'
+        ).join('');
+        dropdown.innerHTML =
+          '<div class="p-2 border-b border-border flex gap-3">' +
+          '<button class="select-all text-xs text-onion hover:text-onion-dark">Select All</button>' +
+          '<button class="deselect-all text-xs text-onion hover:text-onion-dark">Deselect All</button>' +
+          '</div><div class="p-2">' + items + '</div>';
+        btn.parentElement!.appendChild(dropdown);
+        activeDropdown = dropdown;
+        dropdown.querySelector('.select-all')?.addEventListener('click', () => {
+          dropdown.querySelectorAll('.filter-checkbox').forEach((cb: any) => cb.checked = true);
+          filters[col].clear(); applyFilters();
+        });
+        dropdown.querySelector('.deselect-all')?.addEventListener('click', () => {
+          dropdown.querySelectorAll('.filter-checkbox').forEach((cb: any) => cb.checked = false);
+          values.forEach(v => filters[col].add(v)); applyFilters();
+        });
+        dropdown.querySelectorAll('.filter-checkbox').forEach(cb => {
+          cb.addEventListener('change', (e) => {
+            const val = (e.target as HTMLInputElement).dataset.val!;
+            (e.target as HTMLInputElement).checked ? filters[col].delete(val) : filters[col].add(val);
+            applyFilters();
+          });
+        });
+        setTimeout(() => document.addEventListener('click', closeOnOutsideClick), 0);
+      }
+
+      function closeDropdown() {
+        if (activeDropdown) { activeDropdown.remove(); activeDropdown = null; }
+        document.removeEventListener('click', closeOnOutsideClick);
+      }
+
+      function closeOnOutsideClick(e: MouseEvent) {
+        if (activeDropdown && !activeDropdown.contains(e.target as Node)) closeDropdown();
+      }
+
+      async function loadVisitors() {
+        const password = passwordInput.value;
+        if (!password) return;
+        authForm?.classList.add('hidden');
+        loading?.classList.remove('hidden');
+        error?.classList.add('hidden');
+        try {
+          const res = await fetch('/api/visitors?key=' + encodeURIComponent(password));
+          const data = await res.json();
+          if (res.status === 401) throw new Error('Invalid password');
+          if (data.error) throw new Error(data.error);
+          loading?.classList.add('hidden');
+          stats?.classList.remove('hidden');
+          tableContainer?.classList.remove('hidden');
+          localStorage.setItem('onions-visitors-key', password);
+          allData = data;
+          processData();
+          const uniqueIps = new Set(data.map((v: any) => v.ip)).size;
+          const today = new Date().toDateString();
+          const todayCount = data.filter((v: any) => new Date(v.timestamp).toDateString() === today).length;
+          const countries = new Set(data.map((v: any) => v.country)).size;
+          document.getElementById('stat-total')!.textContent = data.length.toString();
+          document.getElementById('stat-unique')!.textContent = uniqueIps.toString();
+          document.getElementById('stat-today')!.textContent = todayCount.toString();
+          document.getElementById('stat-countries')!.textContent = countries.toString();
+          loadSavedFilters();
+          applyFilters();
+        } catch (e: any) {
+          loading?.classList.add('hidden');
+          error?.classList.remove('hidden');
+          error!.textContent = e.message;
+          authForm?.classList.remove('hidden');
+        }
+      }
+
+      document.querySelectorAll('.autofilter-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const col = (btn as HTMLElement).dataset.col!;
+          if (activeDropdown && btn.parentElement!.contains(activeDropdown)) closeDropdown();
+          else showFilterDropdown(btn as HTMLElement, col);
+        });
+      });
+
+      document.querySelectorAll('.time-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          timeFilter = (btn as HTMLElement).dataset.time || 'all';
+          updateTimeButtons(); applyFilters();
+        });
+      });
+
+      clearFiltersBtn?.addEventListener('click', () => {
+        filters = { location: new Set(), ip: new Set(), page: new Set(), referrer: new Set(), device: new Set() };
+        applyFilters();
+      });
+
+      loadBtn?.addEventListener('click', loadVisitors);
+      passwordInput?.addEventListener('keypress', (e) => { if (e.key === 'Enter') loadVisitors(); });
+
+      const savedPassword = localStorage.getItem('onions-visitors-key');
+      if (savedPassword) { passwordInput.value = savedPassword; loadVisitors(); }
+    }
+
+    setup();
+  </script>
+
+</Layout>

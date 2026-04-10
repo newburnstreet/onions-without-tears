@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /visitors
 
 Sitemap: https://onionswithouttears.co.uk/sitemap-index.xml
