@@ -11,39 +11,76 @@ import backCover from '../assets/back-cover.jpeg';
   <!-- Hero -->
   <section class="bg-white">
     <div class="max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
-      <div class="flex justify-center gap-6 md:gap-10 items-center mb-10">
-        <div class="w-[180px] md:w-[228px] bg-cream-dark border-2 border-warm-light rounded-lg shadow-lg overflow-hidden">
+
+      <!-- Mobile: front cover large, back cover small beneath -->
+      <div class="md:hidden mb-10">
+        <div class="flex justify-center mb-4">
+          <div class="w-64 bg-cream-dark border-2 border-warm-light rounded-lg shadow-xl overflow-hidden">
+            <Image
+              src={frontCover}
+              alt="Front cover illustration: a chef contentedly smelling a red onion"
+              class="w-full h-auto"
+              widths={[256, 320]}
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <div class="w-32 bg-cream-dark border-2 border-warm-light rounded-lg shadow-md overflow-hidden opacity-80">
+            <Image
+              src={backCover}
+              alt="Back cover illustration: the same chef crying from the onion"
+              class="w-full h-auto"
+              widths={[128, 180]}
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop: both covers side by side -->
+      <div class="hidden md:flex justify-center gap-10 items-center mb-10">
+        <div class="w-[228px] bg-cream-dark border-2 border-warm-light rounded-lg shadow-lg overflow-hidden">
           <Image
             src={frontCover}
             alt="Front cover illustration: a chef contentedly smelling a red onion"
             class="w-full h-auto"
-            widths={[180, 228]}
+            widths={[228, 320]}
             loading="eager"
             fetchpriority="high"
           />
         </div>
-        <div class="w-[180px] md:w-[228px] bg-cream-dark border-2 border-warm-light rounded-lg shadow-lg overflow-hidden">
+        <div class="w-[228px] bg-cream-dark border-2 border-warm-light rounded-lg shadow-lg overflow-hidden">
           <Image
             src={backCover}
             alt="Back cover illustration: the same chef crying from the onion"
             class="w-full h-auto"
-            widths={[180, 228]}
+            widths={[228, 320]}
             loading="eager"
           />
         </div>
       </div>
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-text tracking-tight mb-4">
+
+      <h1 class="text-5xl md:text-5xl lg:text-6xl font-bold text-text tracking-tight mb-4">
         Onions Without Tears
       </h1>
       <p class="text-lg md:text-xl text-text-muted mb-2">
         A handbook of cooking tips
       </p>
-      <p class="text-base md:text-lg text-text-muted italic">
+      <p class="text-base md:text-lg text-text-muted italic mb-6">
         by Alison Bessborough
       </p>
-      <div class="mt-8">
-        <span class="text-2xl font-bold text-onion">£9.50</span>
+
+      <!-- Feature badges -->
+      <div class="flex flex-wrap justify-center gap-2 mb-8">
+        <span class="px-3 py-1 text-xs border border-onion/40 text-onion-dark rounded-full">Spiral bound</span>
+        <span class="px-3 py-1 text-xs border border-onion/40 text-onion-dark rounded-full">Colour coded</span>
+        <span class="px-3 py-1 text-xs border border-onion/40 text-onion-dark rounded-full">18 illustrations</span>
+        <span class="px-3 py-1 text-xs border border-onion/40 text-onion-dark rounded-full">Alphabetical index</span>
       </div>
+
+      <span class="text-2xl font-bold text-onion">£9.50</span>
       <p class="mt-4 text-base text-text-muted">
         <a href="#find" class="text-onion hover:text-onion-dark underline decoration-onion/40 hover:decoration-onion transition-colors">Find out where to get a copy</a>
       </p>
@@ -56,20 +93,23 @@ import backCover from '../assets/back-cover.jpeg';
   <!-- Introduction -->
   <section class="bg-cream" id="introduction">
     <div class="max-w-2xl mx-auto px-6 py-16 md:py-20">
-      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">Introduction</h2>
-      <p class="mb-6">
+      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center scroll-animate">Introduction</h2>
+      <blockquote class="text-xl md:text-2xl italic text-onion-dark text-center mb-10 leading-relaxed scroll-animate">
+        "Tips gathered over the years from family, friends, and a few happy accidents in the kitchen."
+      </blockquote>
+      <p class="mb-6 scroll-animate">
         This collection is all about tips I have gathered over the years
         from family, friends, publications, odd errors I have made and
         some experiments. I hope some of these prove useful for any
         cook, be they experienced or not.
       </p>
-      <p class="mb-6">
+      <p class="mb-6 scroll-animate">
         I have included cooking methods and terms in case you are not familiar
         with them, as so often you come across them in cookbooks. This is not
         a recipe book, although I have added the odd unusual recipe which one
         wouldn't normally come across.
       </p>
-      <p>
+      <p class="scroll-animate">
         I have found that keeping a notebook or a digital record with an
         index of recipes that I have served up, with the name of the
         cookbook and page number, has proved a useful aide memoire.
