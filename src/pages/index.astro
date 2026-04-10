@@ -12,51 +12,24 @@ import backCover from '../assets/back-cover.jpeg';
   <section class="bg-white">
     <div class="max-w-4xl mx-auto px-6 py-16 md:py-24 text-center">
 
-      <!-- Mobile: front cover large, back cover small beneath -->
-      <div class="md:hidden mb-10">
-        <div class="flex justify-center mb-4">
-          <div class="w-64 bg-cream-dark border-2 border-warm-light rounded-lg shadow-xl overflow-hidden">
-            <Image
-              src={frontCover}
-              alt="Front cover illustration: a chef contentedly smelling a red onion"
-              class="w-full h-auto"
-              widths={[256, 320]}
-              loading="eager"
-              fetchpriority="high"
-            />
-          </div>
-        </div>
-        <div class="flex justify-center">
-          <div class="w-32 bg-cream-dark border-2 border-warm-light rounded-lg shadow-md overflow-hidden opacity-80">
-            <Image
-              src={backCover}
-              alt="Back cover illustration: the same chef crying from the onion"
-              class="w-full h-auto"
-              widths={[128, 180]}
-              loading="eager"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Desktop: both covers side by side -->
-      <div class="hidden md:flex justify-center gap-10 items-center mb-10">
-        <div class="w-[228px] bg-cream-dark border-2 border-warm-light rounded-lg shadow-lg overflow-hidden">
+      <!-- Both covers side by side -->
+      <div class="flex justify-center gap-6 md:gap-10 items-center mb-10">
+        <div class="w-[180px] md:w-[228px] bg-cream-dark border-2 border-warm-light rounded-lg shadow-lg overflow-hidden">
           <Image
             src={frontCover}
             alt="Front cover illustration: a chef contentedly smelling a red onion"
             class="w-full h-auto"
-            widths={[228, 320]}
+            widths={[180, 228]}
             loading="eager"
             fetchpriority="high"
           />
         </div>
-        <div class="w-[228px] bg-cream-dark border-2 border-warm-light rounded-lg shadow-lg overflow-hidden">
+        <div class="w-[180px] md:w-[228px] bg-cream-dark border-2 border-warm-light rounded-lg shadow-lg overflow-hidden">
           <Image
             src={backCover}
             alt="Back cover illustration: the same chef crying from the onion"
             class="w-full h-auto"
-            widths={[228, 320]}
+            widths={[180, 228]}
             loading="eager"
           />
         </div>
