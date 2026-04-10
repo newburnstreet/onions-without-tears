@@ -86,7 +86,7 @@ import mapPreview from '../assets/map-preview.jpg';
       </div>
 
       <!-- Map facade -->
-      <div id="map-container" class="mt-12 rounded-xl overflow-hidden border border-border cursor-pointer relative" onclick="loadMap()">
+      <div id="map-container" class="mt-12 rounded-xl overflow-hidden border border-border cursor-pointer relative">
         <Image
           src={mapPreview}
           alt="Map showing Stansted Park Farm Shop location"
@@ -114,10 +114,9 @@ import mapPreview from '../assets/map-preview.jpg';
 </Layout>
 
 <script>
-  function loadMap() {
-    const container = document.getElementById('map-container');
-    if (!container) return;
+  const container = document.getElementById('map-container');
+  container?.addEventListener('click', () => {
     container.innerHTML = '<iframe src="https://www.google.com/maps?q=Stansted+Park+Farm+Shop,+Rowlands+Castle,+Hampshire+PO9+6DU&z=14&output=embed" width="100%" height="300" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Stansted Park Farm Shop location" class="w-full"></iframe>';
     container.style.cursor = 'default';
-  }
+  });
 </script>
