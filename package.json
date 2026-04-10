@@ -21,5 +21,8 @@
   "devDependencies": {
     "canvas": "^3.2.3",
     "wrangler": "^4.81.1"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }

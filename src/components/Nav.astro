@@ -10,7 +10,7 @@ const links = [
 ];
 ---
 
-<nav class="bg-white border-b border-border sticky top-0 z-50">
+<nav class="bg-cream-dark border-b border-border sticky top-0 z-50">
   <div class="max-w-4xl mx-auto px-4">
     <!-- Mobile: hamburger + title -->
     <div class="flex items-center justify-between md:hidden py-3">
@@ -36,7 +36,7 @@ const links = [
           class:list={[
             'block py-2 px-2 text-lg rounded transition-colors [font-variant:small-caps] whitespace-nowrap',
             currentPath === href || (href !== '/' && currentPath.startsWith(href))
-              ? 'text-onion font-semibold bg-[#FFF8F0]'
+              ? 'text-onion font-semibold bg-cream'
               : 'text-text-muted hover:text-onion',
           ]}
         >
@@ -53,7 +53,7 @@ const links = [
           class:list={[
             'px-4 py-2 text-lg font-medium transition-colors border rounded-full [font-variant:small-caps]',
             currentPath === href || (href !== '/' && currentPath.startsWith(href))
-              ? 'text-onion border-onion bg-[#FFF8F0]'
+              ? 'text-onion border-onion bg-cream'
               : 'text-text-muted border-transparent hover:text-onion hover:border-onion/40 hover:bg-cream/50',
           ]}
         >
