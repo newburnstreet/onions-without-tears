@@ -41,7 +41,7 @@ Every spacing decision must follow this table. Do not deviate without documentin
 | H1 → intro paragraph | `mb-4` | Loosely grouped with content below |
 | Short subtitle → first content | `mb-8` | Same as H2 — both introduce content below |
 | Intro paragraph → next heading | `mb-12` | Separates content blocks in same section |
-| H2 → content | `mb-8` | Standard. Use `mb-12` when followed by dense content (grids, galleries) — larger text needs more whitespace to appear proportional |
+| H2 → content | `mb-8` | Standard. Use `mb-12` when followed by dense content (grids). Use `mb-16` before image galleries — large bold text needs extra room before visual content |
 | H3 (inside card) → card text | `mb-3` | Inside card only |
 | Body paragraph → next paragraph | `mb-6` | Standard |
 | Body paragraph → buttons | `mb-8` | Extra breathing room before CTAs |
