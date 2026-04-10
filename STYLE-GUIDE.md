@@ -29,15 +29,36 @@
 - **Captions**: `text-xs`, colour `text-muted`
 - **Quotes**: `italic text-text-muted`
 
-## Spacing
+## Spacing Protocol
 
-- **Section vertical padding**: `py-16 md:py-20` (64px / 80px)
-- **Content max-width**: `max-w-2xl` (672px) for text, `max-w-4xl` (896px) for galleries/hero
-- **Horizontal padding**: `px-6` (24px)
-- **Between paragraphs**: `mb-6` (24px)
-- **After headings**: `mb-8` (32px) for page/section headings, `mb-4` (16px) for card headings
-- **Between sections**: Use a gradient divider: `h-1 bg-gradient-to-r from-cream via-onion/20 to-cream`
-- **Between last section and footer**: White spacer `h-16 md:h-20`
+Every spacing decision must follow this table. Do not deviate without documenting a reason.
+
+| Relationship | Value | Notes |
+|---|---|---|
+| Section padding (standard) | `py-16 md:py-20` | All sections |
+| Section padding (hero only) | `py-16 md:py-24` | Home page hero only |
+| H1 → short subtitle (1–5 words) | `mb-2` | Glued together as one visual unit |
+| H1 → intro paragraph | `mb-4` | Loosely grouped with content below |
+| Short subtitle → first content | `mb-8` | Same as H2 — both introduce content below |
+| Intro paragraph → next heading | `mb-12` | Separates content blocks in same section |
+| H2 → content | `mb-8` | Standard. Use `mb-12` when followed by dense content (grids, galleries) — larger text needs more whitespace to appear proportional |
+| H3 (inside card) → card text | `mb-3` | Inside card only |
+| Body paragraph → next paragraph | `mb-6` | Standard |
+| Body paragraph → buttons | `mb-8` | Extra breathing room before CTAs |
+| Last element inside a card | `mb-0` | Parent card padding handles the gap |
+| Image/logo block → next element | `mb-10` | Block separator |
+| Card/box → next element | `mb-8` | Block separator |
+| Card/box → next H2 (same content type) | `mb-12` | e.g. card then related heading |
+| Card/box → next H2 (content type change) | `mb-16` | e.g. artist bio box → gallery heading |
+| Card inner padding (standard) | `p-6 md:p-8` | All standard cards |
+| Card inner padding (large/hero) | `p-8 md:p-10` | Info boxes only |
+| Grid gap | `gap-6 md:gap-8` | All grids |
+| Stack of cards | `space-y-6` | Vertical card lists |
+| Button group gap | `gap-3` | Between sibling buttons |
+
+**Content max-width**: `max-w-2xl` (672px) for text, `max-w-4xl` (896px) for galleries/hero
+**Horizontal padding**: `px-6` (24px)
+**Between sections**: Gradient divider `h-1 bg-gradient-to-r from-cream via-onion/20 to-cream`
 
 ## Cards
 
@@ -46,7 +67,7 @@
 - **Corners**: `rounded-xl`
 - **Padding**: `p-6 md:p-8`
 - **Shadow**: `shadow-sm` (subtle, only on feature cards)
-- **Card heading**: `text-lg font-semibold text-onion-dark mb-4`
+- **Card heading**: `text-lg font-semibold text-onion-dark mb-3`
 
 ## Buttons
 
