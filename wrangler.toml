@@ -4,7 +4,7 @@ main = "src/worker.ts"
 
 [[kv_namespaces]]
 binding = "VISITORS"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "8d30806bf5cb4a2fa92bfd1b439c4ec1"
 
 [assets]
 directory = "./dist"
