@@ -2,6 +2,11 @@ name = "onions-without-tears"
 compatibility_date = "2026-01-30"
 main = "src/worker.ts"
 
+routes = [
+  { pattern = "onionswithouttears.co.uk", custom_domain = true },
+  { pattern = "www.onionswithouttears.co.uk", custom_domain = true }
+]
+
 [[kv_namespaces]]
 binding = "VISITORS"
 id = "8d30806bf5cb4a2fa92bfd1b439c4ec1"
