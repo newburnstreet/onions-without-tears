@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Page Not Found: Onions Without Tears" description="The page you were looking for couldn't be found.">
+
+  <section class="bg-white">
+    <div class="max-w-2xl mx-auto px-6 py-16 md:py-24 text-center">
+      <p class="text-6xl mb-6">🧅</p>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">Page not found</h1>
+      <p class="text-text-muted mb-8">
+        Sorry, we couldn't find what you were looking for.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center justify-center bg-onion hover:bg-onion-dark text-white font-semibold px-8 py-3 rounded-full transition-colors"
+      >
+        Back to home
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+
+</Layout>
