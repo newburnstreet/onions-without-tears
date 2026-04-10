@@ -86,6 +86,7 @@ export default {
       // Owner IP filters
       const ownerIPs = [
         '2a00:23c6:7e52:ed01:', // owner mobile (iPhone)
+        '2a00:23ee:1968:7c1c:', // owner mobile (iPhone) - alt network
       ];
       if (ownerIPs.some(ip => visitorIp.startsWith(ip))) return new Response('{}', { headers: corsHeaders });
 
