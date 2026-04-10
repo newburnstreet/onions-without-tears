@@ -5,6 +5,10 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://onionswithouttears.co.uk',
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover',
+  },
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
