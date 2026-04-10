@@ -78,15 +78,14 @@ export default {
     // Handle client-side tracking beacon
     if (path === '/api/track' && request.method === 'POST') {
       const visitorIp = request.headers.get('CF-Connecting-IP') || 'unknown';
-      const ownerIpPrefix = '2a00:23ee:19a0:dc0:';
       const corsHeaders = {
         'Access-Control-Allow-Origin': 'https://onionswithouttears.co.uk',
         'Content-Type': 'application/json',
       };
 
-      if (visitorIp.startsWith(ownerIpPrefix)) {
-        return new Response('{}', { headers: corsHeaders });
-      }
+      // Owner IP filters — add your IPs here to exclude from tracking:
+      // const ownerIPs = ['1.2.3.4', '2a00:xxxx:'];
+      // if (ownerIPs.some(ip => visitorIp.startsWith(ip))) return new Response('{}', { headers: corsHeaders });
 
       try {
         const body = await request.json() as any;
