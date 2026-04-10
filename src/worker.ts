@@ -75,7 +75,59 @@ export default {
       });
     }
 
-    // Get the response from static assets
+    // Handle client-side tracking beacon
+    if (path === '/api/track' && request.method === 'POST') {
+      const visitorIp = request.headers.get('CF-Connecting-IP') || 'unknown';
+      const ownerIpPrefix = '2a00:23ee:19a0:dc0:';
+      const corsHeaders = {
+        'Access-Control-Allow-Origin': 'https://onionswithouttears.co.uk',
+        'Content-Type': 'application/json',
+      };
+
+      if (visitorIp.startsWith(ownerIpPrefix)) {
+        return new Response('{}', { headers: corsHeaders });
+      }
+
+      try {
+        const body = await request.json() as any;
+        const page = (body.page || '/').toString().slice(0, 200);
+        const referrer = (body.referrer || 'direct').toString().slice(0, 500);
+        const userAgent = request.headers.get('User-Agent') || 'unknown';
+
+        const cf = (request as any).cf || {};
+        const visitor = {
+          ip: visitorIp,
+          city: cf.city || 'unknown',
+          region: cf.region || 'unknown',
+          country: cf.country || 'unknown',
+          timezone: cf.timezone || 'unknown',
+          page,
+          referrer,
+          userAgent,
+          timestamp: new Date().toISOString(),
+        };
+
+        const key = `visit_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        ctx.waitUntil(
+          env.VISITORS.put(key, JSON.stringify(visitor), { expirationTtl: 60 * 60 * 24 * 30 })
+        );
+      } catch {}
+
+      return new Response('{}', { headers: corsHeaders });
+    }
+
+    // Handle CORS preflight for tracking
+    if (path === '/api/track' && request.method === 'OPTIONS') {
+      return new Response(null, {
+        headers: {
+          'Access-Control-Allow-Origin': 'https://onionswithouttears.co.uk',
+          'Access-Control-Allow-Methods': 'POST',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        },
+      });
+    }
+
+    // Serve static assets
     let response = await env.ASSETS.fetch(request);
 
     // Serve custom 404 page for not found responses
@@ -87,75 +139,6 @@ export default {
           headers: notFoundPage.headers,
         });
       }
-    }
-
-    // Get visitor IP
-    const visitorIp = request.headers.get('CF-Connecting-IP') || 'unknown';
-
-    // Filter out owner's IP (IPv6 /64 prefix)
-    const ownerIpPrefix = '2a00:23ee:19a0:dc0:';
-    const isOwner = visitorIp.startsWith(ownerIpPrefix);
-
-    // Normalize path
-    const normalizedPath = path.replace(/\/+/g, '/');
-
-    // Common bot/scanner paths to ignore
-    const scannerPaths = [
-      '/admin', '/api', '/wp-admin', '/wp-login.php', '/wp-content', '/wp-json',
-      '/index.php', '/xmlrpc.php', '/login', '/administrator', '/phpmyadmin',
-      '/mysql', '/controlpanel', '/oauth', '/signup', '/register', '/auth',
-      '/.env', '/.git', '/.aws', '/.docker', '/.github', '/.gitlab', '/.well-known',
-      '/config', '/backup', '/terraform', '/docker', '/serverless', '/package.json',
-      '/upload', '/uploads', '/webhook', '/form', '/import', '/fileupload',
-      '/test', '/debug', '/console', '/shell', '/cgi-bin', '/phpinfo', '/info.php',
-      '/rest', '/graphql', '/v1', '/v2', '/_next', '/_vercel',
-      '/stripe', '/payment', '/checkout', '/cart', '/orders', '/billing',
-      '/aws', '/s3', '/srv', '/opt', '/var', '/etc', '/root', '/home',
-    ];
-    const isScanner = scannerPaths.some(p =>
-      normalizedPath === p ||
-      normalizedPath.startsWith(p + '/') ||
-      normalizedPath.startsWith(p + '.')
-    );
-
-    // Only track real page visits
-    const shouldTrack = response.status === 200 &&
-      !isOwner &&
-      !isScanner &&
-      !path.startsWith('/_astro') &&
-      !path.endsWith('.js') &&
-      !path.endsWith('.css') &&
-      !path.endsWith('.png') &&
-      !path.endsWith('.jpg') &&
-      !path.endsWith('.jpeg') &&
-      !path.endsWith('.ico') &&
-      !path.endsWith('.svg') &&
-      !path.endsWith('.woff2') &&
-      !path.endsWith('.xml') &&
-      !path.endsWith('.txt') &&
-      path !== '/visitors' &&
-      !path.startsWith('/api/');
-
-    if (shouldTrack && env.VISITORS) {
-      const cf = (request as any).cf || {};
-      const visitor = {
-        ip: visitorIp,
-        city: cf.city || 'unknown',
-        region: cf.region || 'unknown',
-        country: cf.country || 'unknown',
-        latitude: cf.latitude || null,
-        longitude: cf.longitude || null,
-        timezone: cf.timezone || 'unknown',
-        page: path || '/',
-        referrer: request.headers.get('Referer') || 'direct',
-        userAgent: request.headers.get('User-Agent') || 'unknown',
-        timestamp: new Date().toISOString(),
-      };
-
-      const key = `visit_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      ctx.waitUntil(
-        env.VISITORS.put(key, JSON.stringify(visitor), { expirationTtl: 60 * 60 * 24 * 30 })
-      );
     }
 
     return response;

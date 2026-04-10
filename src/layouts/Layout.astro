@@ -33,6 +33,15 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
     <title>Onions Without Tears</title>
   </head>
+  <script>
+    if (location.pathname !== '/visitors' && location.pathname !== '/visitors/') {
+      fetch('/api/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ page: location.pathname, referrer: document.referrer || 'direct' }),
+      }).catch(() => {});
+    }
+  </script>
   <body class="min-h-screen flex flex-col">
     <Nav />
     <main class="flex-1 flex flex-col">
