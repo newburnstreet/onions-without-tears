@@ -6,7 +6,7 @@ import frontCover from '../assets/front-cover.jpeg';
 import backCover from '../assets/back-cover.jpeg';
 ---
 
-<Layout title="Onions Without Tears — by Alison, Countess of Bessborough">
+<Layout title="Onions Without Tears by Alison Bessborough" description="A practical handbook of cooking tips gathered over a lifetime. Available for £9.50 at Stansted Park Farm Shop or direct from the author.">
 
   <!-- Hero -->
   <section class="bg-white">
@@ -15,17 +15,20 @@ import backCover from '../assets/back-cover.jpeg';
         <div class="w-[180px] md:w-[228px] bg-cream-dark border-2 border-warm-light rounded-lg shadow-lg overflow-hidden">
           <Image
             src={frontCover}
-            alt="Front cover illustration — a chef contentedly smelling a red onion"
+            alt="Front cover illustration: a chef contentedly smelling a red onion"
             class="w-full h-auto"
             widths={[180, 228]}
+            loading="eager"
+            fetchpriority="high"
           />
         </div>
         <div class="w-[180px] md:w-[228px] bg-cream-dark border-2 border-warm-light rounded-lg shadow-lg overflow-hidden">
           <Image
             src={backCover}
-            alt="Back cover illustration — the same chef crying from the onion"
+            alt="Back cover illustration: the same chef crying from the onion"
             class="w-full h-auto"
             widths={[180, 228]}
+            loading="eager"
           />
         </div>
       </div>
@@ -36,7 +39,7 @@ import backCover from '../assets/back-cover.jpeg';
         A handbook of cooking tips
       </p>
       <p class="text-base md:text-lg text-text-muted italic">
-        by Alison, Countess of Bessborough
+        by Alison Bessborough
       </p>
       <div class="mt-8">
         <span class="inline-block bg-onion text-white text-lg font-semibold px-6 py-3 rounded-full">
@@ -44,13 +47,13 @@ import backCover from '../assets/back-cover.jpeg';
         </span>
       </div>
       <p class="mt-4 text-sm text-text-muted">
-        <a href="#find" class="underline decoration-onion/40 hover:decoration-onion transition-colors">Find out where to get your copy</a>
+        <a href="#find" class="text-onion hover:text-onion-dark underline decoration-onion/40 hover:decoration-onion transition-colors">Find out where to get your copy</a>
       </p>
     </div>
   </section>
 
   <!-- Divider -->
-  <div class="h-1 bg-gradient-to-r from-cream via-onion/20 to-cream"></div>
+  <div class="h-1 bg-gradient-to-r from-cream via-onion/20 to-cream" aria-hidden="true"></div>
 
   <!-- Introduction -->
   <section class="bg-cream" id="introduction">
@@ -77,67 +80,34 @@ import backCover from '../assets/back-cover.jpeg';
   </section>
 
   <!-- Divider -->
-  <div class="h-1 bg-gradient-to-r from-cream via-onion/20 to-cream"></div>
-
-  <!-- About Ali -->
-  <section class="bg-white" id="ali">
-    <div class="max-w-2xl mx-auto px-6 py-16 md:py-20">
-      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">About the author</h2>
-      <p class="mb-6">
-        Alison, Countess of Bessborough, has never worked in a professional kitchen.
-        She has, however, spent decades feeding family and friends extraordinarily well —
-        and gathering every tip, trick and hard-won lesson along the way.
-      </p>
-      <p class="mb-6">
-        Self-taught and endlessly curious, Ali is the sort of cook who remembers the
-        trick a young chef on the River Spey showed her for making mayonnaise in twenty
-        seconds, or the tip Antonio Carluccio once shared about freezing wild mushrooms.
-        She's bought fake saffron in a Marrakech market (so you don't have to), and she
-        started out in a kitchen the size of a yacht's galley.
-      </p>
-      <p class="mb-6">
-        This book began as a collection of notes — things scribbled down over the years
-        from family, friends, cookbooks, the odd happy accident, and more than a few
-        mistakes. Eventually, those on the receiving end of her cooking persuaded her
-        to put it all in one place.
-      </p>
-      <p>
-        The result is <em>Onions Without Tears</em> — dedicated to her grandchildren,
-        Ella and Will, and to anyone who believes cooking should be a pleasure, not a puzzle.
-      </p>
-    </div>
-  </section>
-
-  <!-- Divider -->
-  <div class="h-1 bg-gradient-to-r from-cream via-onion/20 to-cream"></div>
+  <div class="h-1 bg-gradient-to-r from-cream via-onion/20 to-cream" aria-hidden="true"></div>
 
   <!-- Where to Find It -->
-  <section class="bg-cream" id="find">
+  <section class="bg-white" id="find">
     <div class="max-w-2xl mx-auto px-6 py-16 md:py-20 text-center">
       <h2 class="text-2xl md:text-3xl font-bold mb-8">Where to find it</h2>
       <p class="mb-6">
-        <em>Onions Without Tears</em> is available for <strong>£9.50</strong> at
+        <em>Onions Without Tears</em> is available at Fred Duncannon's
         <a
           href="https://stanstedfarmshop.com/"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-onion hover:text-onion-dark underline decoration-onion/40 hover:decoration-onion transition-colors font-semibold"
-        >Stansted Park Farm Shop</a> — run by Ali's son and stocked with the kind of
-        produce this book was written for.
+          class="text-onion hover:text-onion-dark underline decoration-onion/40 hover:decoration-onion transition-colors"
+        >Stansted Park Farm Shop</a>.
       </p>
-      <p class="mb-8 text-text-muted">
+      <p class="mb-8">
         You can also <a href="/contact/" class="text-onion hover:text-onion-dark underline decoration-onion/40 hover:decoration-onion transition-colors">get in touch</a> to enquire about ordering a copy directly.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
         <a
           href="/farm-shop/"
-          class="inline-block bg-onion hover:bg-onion-dark text-white font-semibold px-8 py-3 rounded-full transition-colors text-center"
+          class="flex items-center justify-center bg-onion hover:bg-onion-dark text-white font-semibold px-8 py-3 rounded-full transition-colors"
         >
           Visit the Farm Shop
         </a>
         <a
           href="/contact/"
-          class="inline-block border-2 border-onion text-onion hover:bg-onion hover:text-white font-semibold px-8 py-3 rounded-full transition-colors text-center"
+          class="flex items-center justify-center border-2 border-onion text-onion hover:bg-onion-dark hover:border-onion-dark hover:text-white font-semibold px-8 py-3 rounded-full transition-colors"
         >
           Get in touch
         </a>

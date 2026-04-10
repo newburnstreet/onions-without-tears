@@ -1,20 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
+
+const FORMSPREE_URL = 'https://formspree.io/f/mjgpqvjy';
 ---
 
-<Layout title="Contact — Onions Without Tears">
+<Layout title="Contact: Onions Without Tears" description="Order a copy of Onions Without Tears directly, ask a question, or just say hello. Get in touch with Alison Bessborough.">
 
   <section class="bg-white">
     <div class="max-w-xl mx-auto px-6 py-16 md:py-20">
       <h1 class="text-3xl md:text-4xl font-bold mb-4 text-center">Get in touch</h1>
       <p class="text-text-muted text-center mb-10">
-        Whether you'd like to order a copy of the book, ask a question,
-        or simply say hello — drop a message below.
+        If you'd like to order a copy of the book, ask a question,
+        or just say hello, please drop a message below.
       </p>
 
-      <form id="contact-form" class="space-y-6" method="POST" action="#contact">
-        <!-- Honeypot field — hidden from humans, catches bots -->
+      <form id="contact-form" class="space-y-6" method="POST" action={FORMSPREE_URL}>
+        <!-- Honeypot field, hidden from humans, catches bots -->
         <div class="absolute -left-[9999px]" aria-hidden="true">
           <label for="website">Website</label>
           <input
@@ -62,23 +64,30 @@ import Footer from '../components/Footer.astro';
           ></textarea>
         </div>
 
-        <div class="text-center">
+        <div class="flex justify-center">
           <button
             type="submit"
-            class="bg-onion hover:bg-onion-dark text-white font-semibold px-8 py-3 rounded-full transition-colors cursor-pointer"
+            class="flex items-center justify-center bg-onion hover:bg-onion-dark text-white font-semibold px-8 py-3 rounded-full transition-colors cursor-pointer"
           >
             Send message
           </button>
         </div>
       </form>
 
-      <!-- Success message (hidden by default) -->
-      <div id="form-success" class="hidden text-center py-8">
-        <p class="text-lg font-semibold text-onion-dark mb-2">Thank you!</p>
-        <p class="text-text-muted">Your message has been sent. Ali will be in touch soon.</p>
+      <!-- Success modal (hidden by default) -->
+      <div id="form-success" class="hidden fixed inset-0 z-50 flex items-center justify-center px-6">
+        <div class="absolute inset-0 bg-black/40" id="modal-backdrop"></div>
+        <div class="relative bg-white rounded-2xl shadow-2xl p-8 md:p-10 max-w-sm w-full text-center">
+          <p class="text-4xl mb-4">✉️</p>
+          <h2 class="text-xl font-bold text-text mb-2">Message sent!</h2>
+          <p class="text-text-muted mb-6">Thank you for getting in touch. I will be in touch with you soon.</p>
+          <button id="modal-close" class="flex items-center justify-center bg-onion hover:bg-onion-dark text-white font-semibold px-8 py-3 rounded-full transition-colors cursor-pointer mx-auto">
+            Close
+          </button>
+        </div>
       </div>
 
-      <p class="text-xs text-text-muted text-center mt-8">
+      <p class="text-sm text-text-muted text-center mt-8">
         Your details won't be shared with anyone. This form simply sends an email.
       </p>
     </div>
@@ -92,11 +101,25 @@ import Footer from '../components/Footer.astro';
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const success = document.getElementById('form-success') as HTMLElement;
 
-  form?.addEventListener('submit', (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const honeypot = form.querySelector<HTMLInputElement>('input[name="website"]');
     if (honeypot?.value) return;
-    form.classList.add('hidden');
-    success?.classList.remove('hidden');
+
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' },
+    });
+
+    if (response.ok) {
+      form.reset();
+      success?.classList.remove('hidden');
+      document.getElementById('modal-close')?.addEventListener('click', () => success?.classList.add('hidden'));
+      document.getElementById('modal-backdrop')?.addEventListener('click', () => success?.classList.add('hidden'));
+    } else {
+      alert('Sorry, something went wrong. Please try again or email us directly.');
+    }
   });
 </script>

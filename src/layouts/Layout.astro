@@ -8,7 +8,7 @@ interface Props {
 
 const {
   title,
-  description = 'Onions Without Tears — a handbook of cooking tips gathered over a lifetime, by Alison, Countess of Bessborough.',
+  description = 'Onions Without Tears: a handbook of cooking tips gathered over a lifetime, by Alison Bessborough.',
 } = Astro.props;
 ---
 
@@ -21,8 +21,13 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://onionswithouttears.co.uk/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://onionswithouttears.co.uk/og-image.jpg" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
+    <title>Onions Without Tears</title>
   </head>
   <body>
     <Nav />

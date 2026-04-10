@@ -5,39 +5,47 @@ import { Image } from 'astro:assets';
 import farmShopLogo from '../assets/farm-shop-logo.jpg';
 ---
 
-<Layout title="Farm Shop — Onions Without Tears">
+<Layout title="Farm Shop: Onions Without Tears" description="Buy Onions Without Tears at Stansted Park Farm Shop in Rowlands Castle, Hampshire. Open Monday to Sunday, 10am to 4pm.">
 
   <section class="bg-white">
     <div class="max-w-2xl mx-auto px-6 py-16 md:py-20">
 
+      <!-- Intro -->
+      <h1 class="text-3xl md:text-4xl font-bold mb-4 text-center">Farm Shop</h1>
+      <p class="text-center mb-16 max-w-xl mx-auto">
+        <em>Onions Without Tears</em> is available to buy at Stansted Park Farm Shop.
+      </p>
+
       <!-- Logo -->
       <div class="text-center mb-10">
-        <a href="https://stanstedfarmshop.com/" target="_blank" rel="noopener noreferrer" class="inline-block border border-gray-300 rounded-lg p-6 md:p-8 bg-white shadow-md hover:shadow-lg transition-shadow">
+        <a href="https://stanstedfarmshop.com/" target="_blank" rel="noopener noreferrer" class="inline-block border-2 border-border rounded-lg p-6 md:p-8 bg-white shadow-sm hover:border-onion hover:shadow-md transition-all duration-200">
           <Image
             src={farmShopLogo}
-            alt="Stansted Park Farm Shop"
+            alt="Stansted Park Farm Shop logo"
             class="mx-auto w-64 md:w-80 h-auto"
             widths={[256, 320]}
+            loading="eager"
+            fetchpriority="high"
           />
         </a>
       </div>
 
       <!-- Social icons -->
       <div class="flex justify-center gap-4 mb-12">
-        <a href="https://www.facebook.com/StanstedFarmShop/" target="_blank" rel="noopener noreferrer" class="w-14 h-14 flex items-center justify-center rounded-lg border border-gray-300 bg-white shadow-sm hover:shadow-md hover:bg-gray-50 transition-all" aria-label="Facebook">
+        <a href="https://www.facebook.com/StanstedFarmShop/" target="_blank" rel="noopener noreferrer" class="w-14 h-14 flex items-center justify-center rounded-lg border-2 border-border bg-white shadow-sm hover:border-onion hover:shadow-md hover:scale-110 transition-all duration-200" aria-label="Facebook">
           <svg class="w-8 h-8" viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
-        <a href="https://twitter.com/stanstedfarmshp" target="_blank" rel="noopener noreferrer" class="w-14 h-14 flex items-center justify-center rounded-lg border border-gray-300 bg-white shadow-sm hover:shadow-md hover:bg-gray-50 transition-all" aria-label="X (Twitter)">
+        <a href="https://twitter.com/stanstedfarmshp" target="_blank" rel="noopener noreferrer" class="w-14 h-14 flex items-center justify-center rounded-lg border-2 border-border bg-white shadow-sm hover:border-onion hover:shadow-md hover:scale-110 transition-all duration-200" aria-label="X (Twitter)">
           <svg class="w-8 h-8" viewBox="0 0 24 24"><path fill="#000000" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <a href="https://www.instagram.com/stansted_farm_shop/" target="_blank" rel="noopener noreferrer" class="w-14 h-14 flex items-center justify-center rounded-lg border border-gray-300 bg-white shadow-sm hover:shadow-md hover:bg-gray-50 transition-all" aria-label="Instagram">
+        <a href="https://www.instagram.com/stansted_farm_shop/" target="_blank" rel="noopener noreferrer" class="w-14 h-14 flex items-center justify-center rounded-lg border-2 border-border bg-white shadow-sm hover:border-onion hover:shadow-md hover:scale-110 transition-all duration-200" aria-label="Instagram">
           <svg class="w-8 h-8" viewBox="0 0 24 24"><defs><linearGradient id="ig-grad-top" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#FFDC80"/><stop offset="25%" style="stop-color:#F77737"/><stop offset="50%" style="stop-color:#E1306C"/><stop offset="75%" style="stop-color:#C13584"/><stop offset="100%" style="stop-color:#833AB4"/></linearGradient></defs><path fill="url(#ig-grad-top)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         </a>
       </div>
 
       <!-- Ali's quote -->
       <p class="mb-8 italic text-text-muted">
-        "Good cooking starts with good ingredients. I'm lucky enough to have
+        "Good cooking starts with great ingredients. I'm lucky enough to have
         my son's (Fred Duncannon) farm shop on the doorstep. They have fantastic
         produce and stock food and drink from over 100 Sussex and Hampshire
         artisan producers. There's a full butchery counter with local game and
@@ -45,7 +53,7 @@ import farmShopLogo from '../assets/farm-shop-logo.jpg';
         award-winning cheeses."
       </p>
 
-      <h2 class="text-xl font-semibold mt-12 mb-6 text-onion-dark text-center">Come and visit!</h2>
+      <h2 class="text-2xl md:text-3xl font-bold mt-12 mb-8 text-center">Come and visit!</h2>
 
       <!-- Visit card -->
       <div class="bg-cream rounded-xl p-8 md:p-10 border border-border">

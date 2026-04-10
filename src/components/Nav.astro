@@ -3,7 +3,7 @@ const currentPath = Astro.url.pathname;
 
 const links = [
   { href: '/', label: 'Home' },
-  { href: '/taste/', label: 'A Taste of the Book' },
+  { href: '/whats-inside/', label: "What's Inside?" },
   { href: '/farm-shop/', label: 'Farm Shop' },
   { href: '/illustrations/', label: 'Illustrations' },
   { href: '/contact/', label: 'Contact' },
@@ -45,15 +45,15 @@ const links = [
     </div>
 
     <!-- Desktop nav -->
-    <div class="hidden md:flex items-center justify-center gap-1 py-3">
+    <div class="hidden md:flex items-center justify-center gap-1 py-5">
       {links.map(({ href, label }) => (
         <a
           href={href}
           class:list={[
-            'px-3 py-1.5 text-sm rounded-full transition-colors',
+            'px-4 py-2 text-base font-medium transition-colors border rounded-full [font-variant:small-caps]',
             currentPath === href || (href !== '/' && currentPath.startsWith(href))
-              ? 'text-onion font-semibold bg-cream'
-              : 'text-text-muted hover:text-onion hover:bg-cream/50',
+              ? 'text-onion border-onion bg-cream'
+              : 'text-text-muted border-transparent hover:text-onion hover:border-onion/40 hover:bg-cream/50',
           ]}
         >
           {label}

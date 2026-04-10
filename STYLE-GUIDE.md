@@ -50,8 +50,8 @@
 
 ## Buttons
 
-- **Primary (filled)**: `bg-onion hover:bg-onion-dark text-white font-semibold px-8 py-3 rounded-full transition-colors`
-- **Secondary (outline)**: `border-2 border-onion text-onion hover:bg-onion hover:text-white font-semibold px-8 py-3 rounded-full transition-colors`
+- **Primary (filled)**: `flex items-center justify-center bg-onion hover:bg-onion-dark text-white font-semibold px-8 py-3 rounded-full transition-colors`
+- **Secondary (outline)**: `flex items-center justify-center border-2 border-onion text-onion hover:bg-onion-dark hover:border-onion-dark hover:text-white font-semibold px-8 py-3 rounded-full transition-colors`
 - **Text link**: `text-onion hover:text-onion-dark underline decoration-onion/40 hover:decoration-onion transition-colors`
 
 ## Form Inputs
@@ -94,3 +94,4 @@ Every page follows this pattern:
 - Ali's own words where possible (Introduction, Farm Shop quote)
 - Never preachy or salesy
 - Book title always in italics: *Onions Without Tears*
+- **No em dashes (—).** Use commas, full stops, or restructure the sentence instead.
