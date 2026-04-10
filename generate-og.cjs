@@ -57,7 +57,7 @@ async function generate() {
   // ── 3. Draw ───────────────────────────────────────────────────
 
   // Background
-  ctx.fillStyle = '#FFF8F0';
+  ctx.fillStyle = '#FFFCF8';
   ctx.fillRect(0, 0, W, H);
 
   // Border rectangle — tight around content
