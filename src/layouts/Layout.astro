@@ -1,6 +1,5 @@
 ---
 import Nav from '../components/Nav.astro';
-import { ClientRouter } from 'astro:transitions';
 
 interface Props {
   title: string;
@@ -33,7 +32,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:image" content="https://onionswithouttears.co.uk/og-image.jpg" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
     <title>Onions Without Tears</title>
-    <ClientRouter />
   </head>
   <script>
     if (location.pathname !== '/visitors' && location.pathname !== '/visitors/') {
