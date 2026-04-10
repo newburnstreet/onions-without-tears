@@ -33,7 +33,7 @@ const links = [
         <a
           href={href}
           class:list={[
-            'block py-2 px-2 text-sm rounded transition-colors',
+            'block py-2 px-2 text-sm rounded transition-colors [font-variant:small-caps]',
             currentPath === href || (href !== '/' && currentPath.startsWith(href))
               ? 'text-onion font-semibold bg-cream'
               : 'text-text-muted hover:text-onion',
