@@ -22,6 +22,9 @@ import pastaRice from '../assets/illustrations/pasta-rice.jpeg';
 import fruit from '../assets/illustrations/fruit.jpeg';
 import bakingDesserts from '../assets/illustrations/baking-desserts.jpeg';
 import freezingPreserving from '../assets/illustrations/freezing-preserving.jpeg';
+import notes1 from '../assets/illustrations/notes-1.jpeg';
+import notes2 from '../assets/illustrations/notes-2.jpeg';
+import notes3 from '../assets/illustrations/notes-3.jpeg';
 
 const illustrations = [
   { src: ovenTemps, label: 'Oven Temperatures' },
@@ -87,7 +90,7 @@ const illustrations = [
         </div>
       </div>
 
-      <!-- Illustrations grid -->
+      <!-- Chapter illustrations -->
       <h2 class="text-2xl md:text-3xl font-bold mb-16 text-center">Chapter Illustrations</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 md:gap-x-8 gap-y-12 sm:gap-y-16 md:gap-y-20">
         {illustrations.map(({ src, label, tall }) => (
@@ -103,6 +106,22 @@ const illustrations = [
             </div>
           </div>
         ))}
+      </div>
+
+      <!-- Notes illustrations -->
+      <h2 class="text-2xl md:text-3xl font-bold mt-24 mb-16 text-center">Notes Illustrations</h2>
+      <div class="flex flex-col items-center gap-6 md:gap-8">
+        <div class="flex justify-center gap-6 md:gap-8 w-full">
+          <div class="border-2 border-warm-light rounded-lg shadow-lg overflow-hidden aspect-square p-3 bg-white w-full max-w-[calc(33.333%-0.75rem)]">
+            <Image src={notes3} alt="Notes illustration 3" class="w-full h-full object-contain" widths={[300, 400]} />
+          </div>
+          <div class="border-2 border-warm-light rounded-lg shadow-lg overflow-hidden aspect-square p-3 bg-white w-full max-w-[calc(33.333%-0.75rem)]">
+            <Image src={notes2} alt="Notes illustration 2" class="w-full h-full object-contain" widths={[300, 400]} />
+          </div>
+        </div>
+        <div class="border-2 border-warm-light rounded-lg shadow-lg overflow-hidden p-3 bg-white w-full max-w-[calc(66.666%-0.375rem)]" style="aspect-ratio: 2/1">
+          <Image src={notes1} alt="Notes illustration 1" class="w-full h-full object-contain" widths={[600, 900]} />
+        </div>
       </div>
 
     </div>
