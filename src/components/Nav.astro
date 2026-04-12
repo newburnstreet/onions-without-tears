@@ -14,7 +14,7 @@ const links = [
   <div class="max-w-4xl mx-auto px-4">
     <!-- Mobile: hamburger + title -->
     <div class="flex items-center justify-between md:hidden py-3">
-      <a href="/" class="text-lg font-bold text-text">Onions Without Tears</a>
+      <a href="/" class="text-base font-bold text-text">Onions Without Tears</a>
       <button
         id="menu-toggle"
         class="flex items-center gap-2 text-text-muted border border-border rounded-lg px-3 py-2 hover:text-text hover:border-text/30 active:bg-onion active:text-white active:border-onion active:scale-95 transition-all duration-150"
@@ -24,7 +24,7 @@ const links = [
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
-        <span class="text-lg font-semibold text-text [font-variant:small-caps]">Menu</span>
+        <span class="text-base font-semibold text-text [font-variant:small-caps]">Menu</span>
       </button>
     </div>
 
@@ -34,7 +34,7 @@ const links = [
         <a
           href={href}
           class:list={[
-            'block py-2 px-2 text-lg rounded transition-colors [font-variant:small-caps] whitespace-nowrap',
+            'block py-2 px-2 text-base rounded transition-colors [font-variant:small-caps] whitespace-nowrap',
             currentPath === href || (href !== '/' && currentPath.startsWith(href))
               ? 'text-onion font-semibold bg-cream'
               : 'text-text-muted hover:text-onion',
@@ -51,10 +51,10 @@ const links = [
         <a
           href={href}
           class:list={[
-            'px-4 py-2 text-lg font-medium transition-colors border rounded-full [font-variant:small-caps]',
+            'px-4 py-2 text-base font-medium transition-colors border rounded-full [font-variant:small-caps]',
             currentPath === href || (href !== '/' && currentPath.startsWith(href))
               ? 'text-onion border-onion bg-cream'
-              : 'text-text-muted border-transparent hover:text-onion hover:border-onion/40 hover:bg-cream/50',
+              : 'text-text-muted border-transparent hover:text-onion hover:border-onion/40 hover:bg-[#FFFEF9]',
           ]}
         >
           {label}

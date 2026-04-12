@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #FFFEF9;
+  --color-cream: #FFF9EA;
   --color-cream-dark: #F5EDE3;
   --color-onion: #C2185B;
   --color-onion-light: #E91E7E;
@@ -20,10 +20,14 @@ html {
 }
 
 body {
-  font-family: Georgia, 'Times New Roman', serif;
+  font-family: 'Trebuchet MS', Trebuchet, Arial, sans-serif;
   color: var(--color-text);
   line-height: 1.8;
   background-color: var(--color-white);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'EB Garamond', Garamond, Georgia, serif;
 }
 
 ::selection {
