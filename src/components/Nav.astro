@@ -51,7 +51,7 @@ const links = [
         <a
           href={href}
           class:list={[
-            'px-4 py-2 text-base font-medium transition-colors border rounded-full [font-variant:small-caps]',
+            'px-4 py-2 text-base font-medium transition-colors border rounded-full [font-variant:small-caps] focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-onion/50',
             currentPath === href || (href !== '/' && currentPath.startsWith(href))
               ? 'text-onion border-onion bg-cream'
               : 'text-text-muted border-transparent hover:text-onion hover:border-onion/40 hover:bg-[#FFFEF9]',
