@@ -4,17 +4,106 @@ import Footer from '../components/Footer.astro';
 import { Image } from 'astro:assets';
 import farmShopLogo from '../assets/farm-shop-logo.jpg';
 import mapPreview from '../assets/map-preview.jpg';
+
+const FORMSPREE_URL = 'https://formspree.io/f/mjgpqvjy';
 ---
 
-<Layout title="Farm Shop: Onions Without Tears" description="Buy Onions Without Tears at The Stansted Park Farm Shop in Rowlands Castle, Hampshire. Open Monday to Sunday, 10am to 4pm.">
+<Layout title="Buy Now: Onions Without Tears" description="Order a copy of Onions Without Tears directly from the author, or visit The Stansted Park Farm Shop in Rowlands Castle, Hampshire.">
 
+  <!-- Contact Form -->
   <section class="bg-white">
+    <div class="max-w-xl mx-auto px-6 py-16 md:py-24">
+      <h1 class="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center">Order a copy</h1>
+      <p class="text-text-muted text-center mb-10">
+        To order a copy of Onions Without Tears directly, ask a question,
+        or just say hello, please drop a message below.
+      </p>
+
+      <form id="contact-form" class="space-y-6" method="POST" action={FORMSPREE_URL}>
+        <!-- Honeypot field, hidden from humans, catches bots -->
+        <div class="absolute -left-[9999px]" aria-hidden="true">
+          <label for="website">Website</label>
+          <input
+            type="text"
+            id="website"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+          />
+        </div>
+
+        <div>
+          <label for="name" class="block text-sm font-semibold mb-2">Your name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full px-4 py-3 rounded-lg border border-border bg-cream focus:outline-none focus:ring-2 focus:ring-onion/30 focus:border-onion transition-colors"
+            placeholder="Your name"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-semibold mb-2">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-4 py-3 rounded-lg border border-border bg-cream focus:outline-none focus:ring-2 focus:ring-onion/30 focus:border-onion transition-colors"
+            placeholder="you@example.com"
+          />
+        </div>
+
+        <div>
+          <label for="message" class="block text-sm font-semibold mb-2">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows="5"
+            class="w-full px-4 py-3 rounded-lg border border-border bg-cream focus:outline-none focus:ring-2 focus:ring-onion/30 focus:border-onion transition-colors resize-y"
+            placeholder="I'd love a copy of Onions without Tears…"
+          ></textarea>
+        </div>
+
+        <div class="flex justify-center pt-4">
+          <button
+            type="submit"
+            class="flex items-center justify-center bg-onion hover:bg-onion-dark text-white font-semibold px-8 py-3 rounded-full transition-colors cursor-pointer"
+          >
+            Send message
+          </button>
+        </div>
+      </form>
+
+      <!-- Success modal (hidden by default) -->
+      <div id="form-success" class="hidden fixed inset-0 z-50 flex items-center justify-center px-6">
+        <div class="absolute inset-0 bg-black/40" id="modal-backdrop"></div>
+        <div class="relative bg-white rounded-2xl shadow-2xl p-8 md:p-10 max-w-sm w-full text-center">
+          <p class="text-4xl mb-4">✉️</p>
+          <h2 class="text-xl font-bold text-text mb-2">Message sent!</h2>
+          <p class="text-text-muted mb-6">Thank you for getting in touch. I will be in touch with you soon.</p>
+          <button id="modal-close" class="flex items-center justify-center bg-onion hover:bg-onion-dark text-white font-semibold px-8 py-3 rounded-full transition-colors cursor-pointer mx-auto">
+            Close
+          </button>
+        </div>
+      </div>
+
+      <p class="text-sm text-text-muted text-center mt-8">
+        Your message is sent securely via <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener noreferrer" class="underline hover:text-text transition-colors">Formspree</a>. See our <a href="/privacy/" class="underline hover:text-text transition-colors">privacy policy</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Farm Shop -->
+  <section class="bg-cream">
     <div class="max-w-2xl mx-auto px-6 py-16 md:py-24">
 
-      <!-- Intro -->
-      <h1 class="text-3xl md:text-4xl font-bold mb-4 text-center">Farm Shop</h1>
+      <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">Farm Shop</h2>
       <p class="text-center mb-10 max-w-xl mx-auto">
-        Onions Without Tears is available to buy at The <a href="https://stanstedfarmshop.com/contact-us/" target="_blank" rel="noopener noreferrer" class="text-onion hover:text-onion-dark underline decoration-onion/40 hover:decoration-onion transition-colors">Stansted Park Farm Shop</a>.
+        Onions Without Tears is also available to buy at The <a href="https://stanstedfarmshop.com/contact-us/" target="_blank" rel="noopener noreferrer" class="text-onion hover:text-onion-dark underline decoration-onion/40 hover:decoration-onion transition-colors">Stansted Park Farm Shop</a>.
       </p>
 
       <!-- Logo -->
@@ -31,13 +120,10 @@ import mapPreview from '../assets/map-preview.jpg';
         </a>
       </div>
 
-      <!-- Social icons -->
+      <!-- Social icons (Facebook + Instagram only) -->
       <div class="flex justify-center gap-4 mb-10">
         <a href="https://www.facebook.com/StanstedFarmShop/" target="_blank" rel="noopener noreferrer" class="w-14 h-14 flex items-center justify-center rounded-lg border-2 border-border bg-white shadow-sm hover:border-onion hover:shadow-md hover:scale-110 transition-all duration-200" aria-label="Facebook">
           <svg class="w-8 h-8" viewBox="0 0 24 24"><path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
-        <a href="https://twitter.com/stanstedfarmshp" target="_blank" rel="noopener noreferrer" class="w-14 h-14 flex items-center justify-center rounded-lg border-2 border-border bg-white shadow-sm hover:border-onion hover:shadow-md hover:scale-110 transition-all duration-200" aria-label="X (Twitter)">
-          <svg class="w-8 h-8" viewBox="0 0 24 24"><path fill="#000000" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
         <a href="https://www.instagram.com/stansted_farm_shop/" target="_blank" rel="noopener noreferrer" class="w-14 h-14 flex items-center justify-center rounded-lg border-2 border-border bg-white shadow-sm hover:border-onion hover:shadow-md hover:scale-110 transition-all duration-200" aria-label="Instagram">
           <svg class="w-8 h-8" viewBox="0 0 24 24"><defs><linearGradient id="ig-grad-top" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#FFDC80"/><stop offset="25%" style="stop-color:#F77737"/><stop offset="50%" style="stop-color:#E1306C"/><stop offset="75%" style="stop-color:#C13584"/><stop offset="100%" style="stop-color:#833AB4"/></linearGradient></defs><path fill="url(#ig-grad-top)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
@@ -54,10 +140,10 @@ import mapPreview from '../assets/map-preview.jpg';
         award-winning cheeses."
       </p>
 
-      <h2 class="text-2xl md:text-3xl font-bold mb-8 text-center">Come and visit!</h2>
+      <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">Come and visit!</h2>
 
       <!-- Visit card -->
-      <div class="bg-cream rounded-xl p-6 md:p-8 border border-border">
+      <div class="bg-white rounded-xl p-6 md:p-8 border border-border">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-base text-text-muted">
           <div>
             <p class="font-semibold text-text mb-1">Address</p>
@@ -73,9 +159,7 @@ import mapPreview from '../assets/map-preview.jpg';
           </div>
           <div>
             <p class="font-semibold text-text mb-1">Website</p>
-            <p>
-              stanstedfarmshop.com
-            </p>
+            <p>stanstedfarmshop.com</p>
           </div>
         </div>
       </div>
@@ -93,11 +177,6 @@ import mapPreview from '../assets/map-preview.jpg';
         </div>
       </div>
 
-      <!-- CTA -->
-      <p class="mt-8 text-sm text-text-muted text-center italic">
-        Can't visit in person? <a href="/contact/" class="text-onion hover:text-onion-dark underline decoration-onion/40 hover:decoration-onion transition-colors">Get in touch</a> to enquire about ordering a copy of the book directly.
-      </p>
-
     </div>
   </section>
 
@@ -106,6 +185,31 @@ import mapPreview from '../assets/map-preview.jpg';
 </Layout>
 
 <script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const success = document.getElementById('form-success') as HTMLElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const honeypot = form.querySelector<HTMLInputElement>('input[name="website"]');
+    if (honeypot?.value) return;
+
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' },
+    });
+
+    if (response.ok) {
+      form.reset();
+      success?.classList.remove('hidden');
+      document.getElementById('modal-close')?.addEventListener('click', () => success?.classList.add('hidden'));
+      document.getElementById('modal-backdrop')?.addEventListener('click', () => success?.classList.add('hidden'));
+    } else {
+      alert('Sorry, something went wrong. Please try again or email us directly.');
+    }
+  });
+
   const container = document.getElementById('map-container');
   container?.addEventListener('click', () => {
     container.innerHTML = '<iframe src="https://www.google.com/maps?q=Stansted+Park+Farm+Shop,+Rowlands+Castle,+Hampshire+PO9+6DU&z=9&output=embed" width="100%" height="300" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Stansted Park Farm Shop location" class="w-full"></iframe>';
