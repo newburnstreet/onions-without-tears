@@ -15,7 +15,7 @@ const FORMSPREE_URL = 'https://formspree.io/f/mjgpqvjy';
     <div class="max-w-xl mx-auto px-6 py-16 md:py-24">
       <h1 class="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center">Order a copy</h1>
       <p class="text-text-muted text-center mb-10">
-        Order a copy directly from the author below, or visit us at the Stansted Park Farm Shop — details further down the page.
+        Order a copy directly using the form below, or visit us at the Stansted Park Farm Shop - details further down the <a href="#farm-shop" class="text-onion hover:text-onion-dark underline decoration-onion/40 hover:decoration-onion transition-colors">page</a>.
       </p>
 
       <form id="contact-form" class="space-y-6" method="POST" action={FORMSPREE_URL}>
@@ -97,7 +97,8 @@ const FORMSPREE_URL = 'https://formspree.io/f/mjgpqvjy';
   </section>
 
   <!-- Farm Shop — cream band -->
-  <section class="bg-cream">
+  <div class="h-1 bg-gradient-to-r from-cream via-onion/20 to-cream" aria-hidden="true"></div>
+  <section class="bg-cream" id="farm-shop">
     <div class="max-w-2xl mx-auto px-6 py-16 md:py-24">
 
       <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center">Farm Shop</h2>
@@ -141,6 +142,7 @@ const FORMSPREE_URL = 'https://formspree.io/f/mjgpqvjy';
 
     </div>
   </section>
+  <div class="h-1 bg-gradient-to-r from-cream via-onion/20 to-cream" aria-hidden="true"></div>
 
   <!-- Come and visit — white section -->
   <section class="bg-white">
