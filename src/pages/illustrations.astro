@@ -55,7 +55,7 @@ const illustrations = [
 
       <!-- Heading -->
       <h1 class="text-3xl md:text-4xl font-bold mb-1 text-center">Chris Gilbert</h1>
-      <p class="text-center text-text-muted mb-8">Artist</p>
+      <p class="text-base text-center text-text-muted mb-8">Artist</p>
 
       <!-- Thanks to Chris -->
       <div class="bg-cream rounded-xl p-8 md:p-10 border border-border max-w-2xl mx-auto mb-24">
@@ -95,7 +95,7 @@ const illustrations = [
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 md:gap-x-8 gap-y-12 sm:gap-y-16 md:gap-y-20">
         {illustrations.map(({ src, label, tall }) => (
           <div class="text-center">
-            <p class="text-base text-text mb-2">{label}</p>
+            <p class="text-sm text-text mb-2">{label}</p>
             <div class:list={['border-2 border-warm-light rounded-lg shadow-lg overflow-hidden', tall ? 'aspect-square p-3 bg-white' : 'bg-cream-dark']}>
               <Image
                 src={src}
