@@ -10,6 +10,11 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
+    if (url.protocol === 'http:') {
+      url.protocol = 'https:';
+      return Response.redirect(url.toString(), 301);
+    }
+
     // Handle API endpoint for fetching visitors
     if (path === '/api/visitors') {
       const password = url.searchParams.get('key');
