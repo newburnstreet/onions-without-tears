@@ -11,8 +11,12 @@ export default {
     const path = url.pathname;
 
     if (url.protocol === 'http:') {
-      url.protocol = 'https:';
-      return Response.redirect(url.toString(), 301);
+      const ua = request.headers.get('User-Agent') || '';
+      const isPreviewBot = /whatsapp|facebookexternalhit|twitterbot|slackbot|slack-imgproxy|discordbot|telegrambot|linkedinbot|skypeuripreview|bingbot|googlebot|applebot|embedly|iframely|redditbot|pinterest|meta-externalagent/i.test(ua);
+      if (!isPreviewBot) {
+        url.protocol = 'https:';
+        return Response.redirect(url.toString(), 301);
+      }
     }
 
     // Handle API endpoint for fetching visitors
