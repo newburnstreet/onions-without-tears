@@ -8,8 +8,9 @@ interface Props {
 
 const {
   title,
-  description = 'Onions Without Tears: a practical handbook of cooking tips by Alison Bessborough. Available for £9.50 at The Stansted Park Farm Shop.',
+  description = 'A practical handbook of cooking tips by Alison Bessborough. £9.50 at The Stansted Park Farm Shop.',
 } = Astro.props;
+const siteName = 'Onions Without Tears';
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -24,6 +25,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={siteName} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content="https://onionswithouttears.co.uk/og-image.jpg" />
     <meta property="og:image:width" content="1200" />
@@ -37,7 +39,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=4" />
-    <title>Onions Without Tears</title>
+    <title>{title}</title>
   </head>
   <script>
     if (location.pathname !== '/visitors' && location.pathname !== '/visitors/') {
