@@ -4,11 +4,13 @@ import Nav from '../components/Nav.astro';
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
 
 const {
   title,
   description = 'A practical handbook of cooking tips by Alison Bessborough. £9.50 at The Stansted Park Farm Shop.',
+  noindex = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -31,6 +33,7 @@ const breadcrumbSchema = !isHomepage && {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-site-verification" content="P0GgOqnEiFYgKmb9jBSA4zecdopkIOqXiyF3FAnqANU" />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     <meta property="og:title" content={title} />

@@ -9,7 +9,7 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: 'hover',
   },
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => !page.includes('/visitors') })],
   vite: {
     plugins: [tailwindcss()],
   },
