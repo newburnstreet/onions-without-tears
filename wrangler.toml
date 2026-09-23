@@ -15,3 +15,4 @@ id = "8d30806bf5cb4a2fa92bfd1b439c4ec1"
 directory = "./dist"
 binding = "ASSETS"
 not_found_handling = "404-page"
+run_worker_first = true

@@ -25,6 +25,7 @@ import mapPreview from '../assets/map-preview.jpg';
             alt="Stansted Park Farm Shop logo"
             class="mx-auto w-64 md:w-80 h-auto"
             widths={[256, 320]}
+            sizes="(min-width: 768px) 320px, 256px"
             loading="eager"
             fetchpriority="high"
           />
@@ -87,6 +88,7 @@ import mapPreview from '../assets/map-preview.jpg';
           alt="Map showing Stansted Park Farm Shop location"
           class="w-full h-full object-cover"
           widths={[672, 900]}
+          sizes="(min-width: 768px) 672px, 100vw"
         />
         <div class="absolute top-3 left-3">
           <span class="bg-white text-text font-semibold text-sm px-4 py-2 rounded-full shadow border border-text-muted">Tap to load map</span>
@@ -103,8 +105,6 @@ import mapPreview from '../assets/map-preview.jpg';
 
   <Footer />
 
-</Layout>
-
 <script>
   const container = document.getElementById('map-container');
   container?.addEventListener('click', () => {
@@ -112,3 +112,5 @@ import mapPreview from '../assets/map-preview.jpg';
     container.style.cursor = 'default';
   });
 </script>
+
+</Layout>
