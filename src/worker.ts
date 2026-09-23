@@ -10,11 +10,17 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
-    if (url.protocol === 'http:') {
+    // Canonicalise browser traffic to https://apex — preview bots
+    // (WhatsApp etc.) still get served whatever URL they hit, since
+    // og:url in the HTML already tells them the canonical URL.
+    const isWww = url.hostname.startsWith('www.');
+    const isHttp = url.protocol === 'http:';
+    if (isWww || isHttp) {
       const ua = request.headers.get('User-Agent') || '';
       const isPreviewBot = /whatsapp|facebookexternalhit|twitterbot|slackbot|slack-imgproxy|discordbot|telegrambot|linkedinbot|skypeuripreview|bingbot|googlebot|applebot|embedly|iframely|redditbot|pinterest|meta-externalagent/i.test(ua);
       if (!isPreviewBot) {
-        url.protocol = 'https:';
+        if (isHttp) url.protocol = 'https:';
+        if (isWww) url.hostname = url.hostname.replace(/^www\./, '');
         return Response.redirect(url.toString(), 301);
       }
     }
