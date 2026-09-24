@@ -10,6 +10,13 @@ export default {
     const url = new URL(request.url);
     const path = url.pathname;
 
+    // /contact and /farm-shop were merged into /buy-now/ — 301 any
+    // remaining traffic (external links, Google's stale index) to the
+    // canonical page.
+    if (path === '/contact' || path === '/contact/' || path === '/farm-shop' || path === '/farm-shop/') {
+      return Response.redirect('https://onionswithouttears.co.uk/buy-now/', 301);
+    }
+
     // Canonicalise browser traffic to https://apex — preview bots
     // (WhatsApp etc.) still get served whatever URL they hit, since
     // og:url in the HTML already tells them the canonical URL.
